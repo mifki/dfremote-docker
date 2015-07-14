@@ -4,10 +4,7 @@ MAINTAINER pronvit@me.com
 # Install Dwarf Fortress dependencies
 # 64 bit linux, but DF requires 32 bit libraries
 RUN dpkg --add-architecture i386 && apt-get update -y && apt-get install -y \
-    libsdl-image1.2:i386 \
-    libsdl-ttf2.0-0:i386 \
-    libgtk2.0-0:i386 \
-    libglu1-mesa:i386
+    libsdl-image1.2:i386 libsdl-ttf2.0-0:i386 libgtk2.0-0:i386 libglu1-mesa:i386 openssl:i386
 
 # Setup en_US.UTF-8 locale (so we can see _all_ DF's ASCII)
 #ENV LANG en_US.UTF-8
