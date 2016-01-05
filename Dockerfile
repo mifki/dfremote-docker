@@ -1,4 +1,4 @@
-FROM ubuntu:14.10
+FROM ubuntu:14.04
 MAINTAINER pronvit@me.com
 
 # Install Dwarf Fortress dependencies
@@ -13,14 +13,17 @@ RUN dpkg --add-architecture i386 && apt-get update -y && apt-get install -y \
 # Install wget (to download DF and DFHack)
 RUN apt-get install -y wget unzip
 
+# Clean up
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Download & Unpack Dwarf Fortress
 RUN wget --no-check-certificate -qO- http://www.bay12games.com/dwarves/df_40_24_linux.tar.bz2 | tar -xj -C / && rm /df_linux/libs/libstdc++.so.6
 
 # Download & Unpack DFHack
-RUN wget --no-check-certificate -qO- https://github.com/DFHack/dfhack/releases/download/0.40.24-r3/dfhack-0.40.24-r3-Linux-gcc-4.5-no-stonesense.tar.bz2 | tar -xj -C /df_linux
+RUN wget --no-check-certificate -qO- https://github.com/DFHack/dfhack/releases/download/0.40.24-r5/dfhack-0.40.24-r5-Linux-gcc-4.5.4.tar.bz2 | tar -xj -C /df_linux && rm -rf df_linux/hack/plugins/*
 
-RUN wget -q http://mifki.com/df/update/dfremote-updater.zip && unzip -j -d /df_linux/hack/plugins dfremote-updater.zip 0.40.24-r3/linux/* && rm dfremote-updater.zip
-RUN wget -q http://mifki.com/df/update/dfremote-latest.zip && mkdir t && unzip -d t dfremote-latest.zip && mv t/0.40.24-r3/linux/* /df_linux/hack/plugins/ && mv t/remote /df_linux/hack/lua/ && rm -rf t && rm dfremote-latest.zip
+RUN wget -q http://mifki.com/df/update/dfremote-updater.zip && unzip -j -d /df_linux/hack/plugins dfremote-updater.zip 0.40.24-r5/linux/* && rm dfremote-updater.zip
+RUN wget -q http://mifki.com/df/update/dfremote-latest.zip && mkdir t && unzip -d t dfremote-latest.zip && mv t/0.40.24-r5/linux/* /df_linux/hack/plugins/ && mv t/remote /df_linux/hack/lua/ && rm -rf t && rm dfremote-latest.zip
 
 ADD init.txt /df_linux/data/init/init.txt
 ADD dfhack.init /df_linux/dfhack.init
