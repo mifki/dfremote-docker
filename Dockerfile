@@ -20,7 +20,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN wget --no-check-certificate -qO- http://www.bay12games.com/dwarves/df_40_24_linux.tar.bz2 | tar -xj -C / && rm /df_linux/libs/libstdc++.so.6
 
 # Download & Unpack DFHack
-RUN wget --no-check-certificate -qO- https://github.com/DFHack/dfhack/releases/download/0.40.24-r5/dfhack-0.40.24-r5-Linux-gcc-4.5.4.tar.bz2 | tar -xj -C /df_linux && rm -rf df_linux/hack/plugins/*
+RUN wget --no-check-certificate -qO- https://github.com/DFHack/dfhack/releases/download/0.40.24-r5/dfhack-0.40.24-r5-Linux-gcc-4.5.4.tar.bz2 | tar -xj -C /df_linux && rm -rf /df_linux/hack/plugins/*
 
 RUN wget -q http://mifki.com/df/update/dfremote-updater.zip && unzip -j -d /df_linux/hack/plugins dfremote-updater.zip 0.40.24-r5/linux/* && rm dfremote-updater.zip
 RUN wget -q http://mifki.com/df/update/dfremote-latest.zip && mkdir t && unzip -d t dfremote-latest.zip && mv t/0.40.24-r5/linux/* /df_linux/hack/plugins/ && mv t/remote /df_linux/hack/lua/ && rm -rf t && rm dfremote-latest.zip
