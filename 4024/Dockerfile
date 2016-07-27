@@ -26,7 +26,7 @@ RUN wget -q http://mifki.com/df/update/dfremote-updater.zip && unzip -j -d /df_l
 RUN wget -q http://mifki.com/df/update/dfremote-latest.zip && mkdir t && unzip -d t dfremote-latest.zip && mv t/0.40.24-r5/linux/* /df_linux/hack/plugins/ && mv t/remote /df_linux/hack/lua/ && rm -rf t && rm dfremote-latest.zip
 
 ADD init.txt /df_linux/data/init/init.txt
-ADD dfhack.init /df_linux/dfhack.init
+ADD ../dfhack.init /df_linux/dfhack.init
 
 WORKDIR /df_linux
 
