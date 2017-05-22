@@ -30,7 +30,7 @@ WORKDIR /df_linux
 
 EXPOSE 1235/udp
 
-RUN mkdir /df_linux/data/save
+RUN mkdir -p /df_linux/data/save
 VOLUME /df_linux/data/save
 
 CMD /df_linux/dfhack
