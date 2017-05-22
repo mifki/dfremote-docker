@@ -17,10 +17,10 @@ RUN apt-get install -y wget unzip
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Download & Unpack Dwarf Fortress
-RUN wget --no-check-certificate -qO- http://www.bay12games.com/dwarves/df_40_24_linux.tar.bz2 | tar -xj -C /
+RUN wget -qO- http://www.bay12games.com/dwarves/df_40_24_linux.tar.bz2 | tar -xj -C /
 
 # Download & Unpack DFHack+DFRemote
-RUN wget --no-check-certificate -q -O dfremote.zip http://mifki.com/df/update/dfremote-full-4024-Linux.zip && unzip dfremote.zip -d /df_linux && rm dfremote.zip
+RUN wget -q -O dfremote.zip http://mifki.com/df/update/dfremote-full-4024-Linux.zip && unzip dfremote.zip -d /df_linux && rm dfremote.zip
 
 ADD init.txt /df_linux/data/init/init.txt
 ADD dfhack.init /df_linux/dfhack.init

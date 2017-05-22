@@ -9,16 +9,16 @@ RUN apt-get update -y && apt-get install -y libsdl-image1.2 libsdl-ttf2.0-0 libg
 #RUN apt-get -y install locales && locale-gen en_US.UTF-8
 
 # Install wget (to download DF and DFHack)
-RUN apt-get install -y wget unzip
+RUN apt-get install -y wget unzip bzip2
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Download & Unpack Dwarf Fortress
-RUN wget --no-check-certificate -qO- http://www.bay12games.com/dwarves/df_43_05_linux.tar.bz2 | tar -xj -C /
+RUN wget -qO- http://www.bay12games.com/dwarves/df_43_05_linux.tar.bz2 | tar -xj -C /
 
 # Download & Unpack DFHack+DFRemote
-RUN wget --no-check-certificate -q -O dfremote.zip http://mifki.com/df/update/dfremote-full-4305-Linux.zip && unzip dfremote.zip -d /df_linux && rm dfremote.zip
+RUN wget -q -O dfremote.zip http://mifki.com/df/update/dfremote-full-4305-Linux.zip && unzip dfremote.zip -d /df_linux && rm dfremote.zip
 
 ADD init.txt /df_linux/data/init/init.txt
 ADD dfhack.init /df_linux/dfhack.init
