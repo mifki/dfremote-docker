@@ -23,6 +23,8 @@ RUN wget -q -O dfremote.zip http://mifki.com/df/update/dfremote-full-4305-Linux.
 ADD init.txt /df_linux/data/init/init.txt
 ADD dfhack.init /df_linux/dfhack.init
 RUN rm -f /df_linux/gamelog.txt ; ln -sf /dev/null /df_linux/gamelog.txt
+RUN ln -sf /dev/null /df_linux/stdout.log
+RUN ln -sf /dev/null /df_linux/stderr.log
 
 WORKDIR /df_linux
 
@@ -31,5 +33,5 @@ EXPOSE 1235/udp
 RUN mkdir -p /df_linux/data/save
 VOLUME /df_linux/data/save
 
-CMD /df_linux/dfhack
-
+ENV TERM=xterm
+CMD LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./hack LD_PRELOAD=./hack/libdfhack.so /df_linux/libs/Dwarf_Fortress
