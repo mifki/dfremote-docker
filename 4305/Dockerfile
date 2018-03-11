@@ -8,7 +8,7 @@ RUN apt-get update -y && apt-get install -y libsdl-image1.2 libsdl-ttf2.0-0 libg
 RUN wget -q -O dfremote.zip http://mifki.com/df/update/dfremote-complete-4305-Linux.zip && unzip dfremote.zip -d /df_linux && rm dfremote.zip
 
 ADD init.txt /df_linux/data/init/init.txt
-ADD dfhack.init /df_linux/dfhack.init
+ADD remote.txt /df_linux/data/init/remote.txt
 RUN rm -f /df_linux/gamelog.txt ; ln -sf /dev/null /df_linux/gamelog.txt
 RUN rm -f /df_linux/errorlog.txt ; ln -sf /dev/null /df_linux/errorlog.txt
 RUN ln -sf /dev/null /df_linux/stdout.log
