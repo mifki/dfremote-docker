@@ -5,7 +5,7 @@ MAINTAINER pronvit@me.com
 RUN apt-get update -y && apt-get install -y libsdl-image1.2 libsdl-ttf2.0-0 libgtk2.0-0 libglu1-mesa openssl wget unzip && rm -rf /var/lib/apt/lists/*
 
 # Download & Unpack DF+DFHack+DFRemote
-RUN wget -q -O dfremote.zip http://mifki.com/df/update/dfremote-complete-4305-Linux.zip && unzip dfremote.zip -d /df_linux && rm dfremote.zip
+RUN wget -q -O dfremote.zip http://assets.mifki.com.s3-website-us-east-1.amazonaws.com/dfupdate/dfremote-complete-4305-Linux.zip && unzip dfremote.zip -d /df_linux && rm dfremote.zip
 
 ADD init.txt /df_linux/data/init/init.txt
 ADD remote.txt /df_linux/data/init/remote.txt
